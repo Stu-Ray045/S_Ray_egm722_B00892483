@@ -1,5 +1,8 @@
 import geopandas as gpd # Import the geopandas module
 from shapely import geometry # Import the geometry function from the shapely module
+import matplotlib.pyplot as plt
+import pandas as pd
+%matplotlib inline
 
 # set extent of grid
 total_bounds = gdf.total_bounds
@@ -22,5 +25,6 @@ fishnet.to_file('fishnet_grid.shp')
 
 # import shapefile mask for clipping
 
+usa = gpd.read_file('http://localhost:8888/edit/projects/S_Ray_egm722_B00892483/data%20files/gadm41_USA_1.shp')
 
 
