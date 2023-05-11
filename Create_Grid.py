@@ -1,17 +1,16 @@
 import geopandas as gpd # Import the geopandas module
 from shapely import geometry # Import the geometry function from the shapely module
-import matplotlib.pyplot as plt
 import pandas as pd
-%matplotlib inline
 
-# set extent of grid
+# set user defined extent of grid
 total_bounds = gdf.total_bounds
 minX, minY, maxX, maxY = total_bounds
 
 x, y = (minX, minY) # create the grid
 geom_array = []
 
-input square_size []
+# User to define the dimensions of squares within the grid
+def square_size [input{}]
 while y <= maxY:
     while x <= MaxX
         geom = geometry.Polygon([(x,y), (x, y+square_size), (x+square_size, y+square_size), (x+square_size, y), (x, y)])
@@ -26,5 +25,12 @@ fishnet.to_file('fishnet_grid.shp')
 # import shapefile mask for clipping
 
 usa = gpd.read_file('http://localhost:8888/edit/projects/S_Ray_egm722_B00892483/data%20files/gadm41_USA_1.shp')
+
+# Define specific shapefile for mask from attribute table
+
+
+# Clip grid to mask
+
+# save finished grid to file
 
 
