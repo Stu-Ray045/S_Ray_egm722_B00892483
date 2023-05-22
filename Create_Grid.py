@@ -64,6 +64,8 @@ def get_input_state_geometry(state_gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     while True:
         print('Enter comma separated two letter state abbreviations (eg. AL,AK,AZ): ') # prompt user for two letter state code
 
+        input_states = [state.upper() for state in input().split(',')]
+
         state_list = [
             state
             for state in input_states
@@ -106,7 +108,7 @@ def main():
 
     # save product to geopackage
     state_grid_gdf.to file('grid,gpkg')
-    
+
 
 # save finished grid to file
 
