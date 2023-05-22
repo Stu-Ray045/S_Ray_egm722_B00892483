@@ -47,16 +47,23 @@ def create_aoi_grid(aoi_bounds: list, grid_resolution: int) -> gpd.GeoDataFrame:
     y = max_y
     geom_array = []
 
-while y <= maxY:
-    while x <= MaxX
-        geom = geometry.Polygon([(x,y), (x, y+square_size), (x+square_size, y+square_size), (x+square_size, y), (x, y)])
-        geom_array.append(geom)
-        x += square_size
-    x = minX
-    y += square_size
+    while y >= min_y:
+        x = min_x
+        while x <= max_x:
+            geom = shapely.geometry.Polygon(
+                [
+                    (x, y),
+                    (x, y - grid resolution),
+                    (x + grid_resolution, y - grid_resolution),
+                    (x + grid_resolution, y),
+                    (x, y)
+                ]
+            )
+            geom_array.append(geom)
 
-fishnet = gpd.GeoDataFrame(geom_array, columns=['geometry']).set_crs('EPSG:3857') # set the grid CRS
-fishnet.to_file('fishnet_grid.shp')
+            x += grid_resolution # add resolution to x after each polygon is created
+
+        y -= grid_resolution # subtract resolution to y after each polygon is created
 
 # import shapefile mask for clipping
 
