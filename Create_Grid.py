@@ -83,6 +83,14 @@ def get_input_state_geometry(state_gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
 def extract_grid_by_state(grid_gdf, state_gdf):
     return gpd.sjoin(grid_gdf, state_gdf)
 
+# Add columsn for attribute table
+def add_columns(grid_gdf: gpd_GeoDataFrame):
+    return gpd.GeoDataFrame(
+        grid_gdf.reindex(
+            columns=['Damage', 'Cause', 'Functionality', 'geometry']
+        )
+    )
+
 # save finished grid to file
 
 
