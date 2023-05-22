@@ -53,7 +53,7 @@ def create_aoi_grid(aoi_bounds: list, grid_resolution: int) -> gpd.GeoDataFrame:
             geom = shapely.geometry.Polygon(
                 [
                     (x, y),
-                    (x, y - grid resolution),
+                    (x, y - grid_resolution),
                     (x + grid_resolution, y - grid_resolution),
                     (x + grid_resolution, y),
                     (x, y)
@@ -92,8 +92,8 @@ def get_input_state_geometry(state_gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
 def extract_grid_by_state(grid_gdf, state_gdf):
     return gpd.sjoin(grid_gdf, state_gdf)
 
-# Add columsn for attribute table
-def add_columns(grid_gdf: gpd_GeoDataFrame):
+# Add columns for attribute table
+def add_columns(grid_gdf: gpd.GeoDataFrame):
     return gpd.GeoDataFrame(
         grid_gdf.reindex(
             columns=['Damage', 'Cause', 'Functionality', 'geometry']
@@ -102,19 +102,19 @@ def add_columns(grid_gdf: gpd_GeoDataFrame):
 
 # chain all functions together
 def main():
-    aoi_bounds = get_input+aoi_bounds()
+    aoi_bounds = get_input_aoi_bounds()
     grid_resolution = get_input_grid_resolution()
     grid_gdf = create_aoi_grid(aoi_bounds, grid_resolution)
 
     # point code to data folder
     state_gdf = gpd.read_file(r'data\USA_GADM41_States.gpkg')
 
-    state_gdf = get_input_state_geomtery(state_gdf)
+    state_gdf = get_input_state_geometry(state_gdf)
     state_grid_gdf = extract_grid_by_state(grid_gdf, state_gdf)
     state_grid_gdf = add_columns(state_grid_gdf)
 
     # save product to geopackage
-    state_grid_gdf.to file('grid,gpkg')
+    state_grid_gdf.to_file('grid,gpkg')
 
 # executes code only if run driectly by interpreter
 # prevents automatic execution of code if imported
