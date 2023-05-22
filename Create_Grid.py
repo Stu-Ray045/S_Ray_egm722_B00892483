@@ -116,7 +116,10 @@ def main():
     # save product to geopackage
     state_grid_gdf.to file('grid,gpkg')
 
+# executes code only if run driectly by interpreter
+# prevents automatic execution of code if imported
+if __name__ == '__main__':
+    main()
 
-# save finished grid to file
 
 
