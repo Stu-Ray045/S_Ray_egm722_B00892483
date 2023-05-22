@@ -60,7 +60,24 @@ fishnet.to_file('fishnet_grid.shp')
 
 # import shapefile mask for clipping
 
-usa = gpd.read_file('http://localhost:8888/edit/projects/S_Ray_egm722_B00892483/data%20files/gadm41_USA_1.shp')
+def get_input_state_geometry(state_gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+    while True:
+        print('Enter comma separated two letter state abbreviations (eg. AL,AK,AZ): ') # prompt user for two letter state code
+
+        state_list = [
+            state
+            for state in input_states
+            if state not in state_list # list user inputs not in state abbreviation list
+        ]
+
+        if len(input_errors) > 0: # continue while loop if errors are present
+            print(f'Inputs not in list of available states: {input_errors}')
+            continue
+
+        # return geodataframe of dtates from input list
+        return gpd.GeoDataFrame(
+            geometry=state_gdf[state_gdf['STATE_CODE'].isin(input_states)]['geometry']
+        )
 
 # Define specific shapefile for mask from attribute table
 
