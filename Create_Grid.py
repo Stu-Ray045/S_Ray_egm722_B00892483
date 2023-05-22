@@ -79,10 +79,9 @@ def get_input_state_geometry(state_gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
             geometry=state_gdf[state_gdf['STATE_CODE'].isin(input_states)]['geometry']
         )
 
-# Define specific shapefile for mask from attribute table
-
-
 # Clip grid to mask
+def extract_grid_by_state(grid_gdf, state_gdf):
+    return gpd.sjoin(grid_gdf, state_gdf)
 
 # save finished grid to file
 
