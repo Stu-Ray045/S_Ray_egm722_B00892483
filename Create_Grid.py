@@ -27,7 +27,18 @@ def get_input_aoi_bounds() -> str: #prompt user to define area of interest
 
 
 # User to define the dimensions of squares within the grid
-def square_size [input{}]
+def get_input_grid_resolution() -> int:
+
+    while True:  # enter infinite while loop until user enters valid input
+        print('Enter required grid resolution in metres:')
+
+        try:
+            return int(input())
+
+        except ValueError as e:
+            print(f'{e}: invalid input integer.')
+            continue
+
 while y <= maxY:
     while x <= MaxX
         geom = geometry.Polygon([(x,y), (x, y+square_size), (x+square_size, y+square_size), (x+square_size, y), (x, y)])
