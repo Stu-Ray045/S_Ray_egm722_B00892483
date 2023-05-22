@@ -12,7 +12,7 @@ def get_input_aoi_bounds() -> str: #prompt user to define area of interest
             if os.path.exists(aoi):
                 aoi_geometry = gpd.read_file(aoi, crs=4326)
             else:
-                aoi_geometry = gpd.Geoseries.from_wkt([aoi], crs=4326)
+                aoi_geometry = gpd.GeoSeries.from_wkt([aoi], crs=4326)
 
             # build a list of rounded integer aoi bounding coords for grid creation
             # EPSG:3957 used to ensure all squares will have the same orientation
