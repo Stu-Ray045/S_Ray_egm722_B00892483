@@ -3,6 +3,23 @@ import os
 import geopandas as gpd
 import shapely
 
+def get_input_aoi_bounds() -> str: #prompt user to define area of interest
+    while True:
+        print('Enter WGS 84 WKT string or valid GIS file path: ')
+        aoi = input()
+
+        try: # validate user input as a GIS file or WKT
+            if os.path.exists(aoi):
+                aoi_geometry = gpd.read_file(aoi, crs=4326)
+            else:
+                aoi_geometry = gpd.Geoseries.from_wkt([aoi], crs=4326)
+
+            # build a list of rounded integer aoi bounding coords for grid creation
+            # EPSG:3957 used to ensure all squares will have the same orientation
+            aoi_bounds = [
+                int(round(coord, 0))
+                for coord in aoi_geometry.to_crs(3857).total_bounds
+            ]
 
 # set user defined extent of grid
 total_bounds = gdf.total_bounds
