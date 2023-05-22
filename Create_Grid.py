@@ -1,6 +1,8 @@
-import geopandas as gpd # Import the geopandas module
-from shapely import geometry # Import the geometry function from the shapely module
-import pandas as pd
+# import required modules
+import os
+import geopandas as gpd
+import shapely
+
 
 # set user defined extent of grid
 total_bounds = gdf.total_bounds
