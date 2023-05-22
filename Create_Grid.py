@@ -39,6 +39,14 @@ def get_input_grid_resolution() -> int:
             print(f'{e}: invalid input integer.')
             continue
 
+# create grid
+def create_aoi_grid(aoi_bounds: list, grid_resolution: int) -> gpd.GeoDataFrame:
+    ''
+    # set up necessary variables for grid creation
+    min_x, min_y, max_x, max_y, = aoi_bounds
+    y = max_y
+    geom_array = []
+
 while y <= maxY:
     while x <= MaxX
         geom = geometry.Polygon([(x,y), (x, y+square_size), (x+square_size, y+square_size), (x+square_size, y), (x, y)])
