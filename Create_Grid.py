@@ -91,6 +91,23 @@ def add_columns(grid_gdf: gpd_GeoDataFrame):
         )
     )
 
+# chain all functions together
+def main():
+    aoi_bounds = get_input+aoi_bounds()
+    grid_resolution = get_input_grid_resolution()
+    grid_gdf = create_aoi_grid(aoi_bounds, grid_resolution)
+
+    # point code to data folder
+    state_gdf = gpd.read_file(r'data\USA_GADM41_States.gpkg')
+
+    state_gdf = get_input_state_geomtery(state_gdf)
+    state_grid_gdf = extract_grid_by_state(grid_gdf, state_gdf)
+    state_grid_gdf = add_columns(state_grid_gdf)
+
+    # save product to geopackage
+    state_grid_gdf.to file('grid,gpkg')
+    
+
 # save finished grid to file
 
 
