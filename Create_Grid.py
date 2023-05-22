@@ -21,12 +21,10 @@ def get_input_aoi_bounds() -> str: #prompt user to define area of interest
                 for coord in aoi_geometry.to_crs(3857).total_bounds
             ]
 
-# set user defined extent of grid
-total_bounds = gdf.total_bounds
-minX, minY, maxX, maxY = total_bounds
+        #  catch errors and continue while loop
+        except Exception:
+            print('Invlaid input path, file, or WKT.')
 
-x, y = (minX, minY) # create the grid
-geom_array = []
 
 # User to define the dimensions of squares within the grid
 def square_size [input{}]
