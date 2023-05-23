@@ -26,6 +26,7 @@ def get_input_aoi_bounds() -> str: #prompt user to define area of interest
         #  catch errors and continue while loop
         except Exception:
             print('Invlaid input path, file, or WKT.')
+            continue
 
 
 # User to define the dimensions of squares within the grid
