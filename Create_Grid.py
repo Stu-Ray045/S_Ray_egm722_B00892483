@@ -21,6 +21,8 @@ def get_input_aoi_bounds() -> str: #prompt user to define area of interest
                 for coord in aoi_geometry.to_crs(3857).total_bounds
             ]
 
+            return aoi_bounds
+
         #  catch errors and continue while loop
         except Exception:
             print('Invlaid input path, file, or WKT.')
@@ -120,8 +122,8 @@ def main():
 
 # executes code only if run directly by interpreter
 # prevents automatic execution of code if imported
-# if __name__ == '__main__':
-main()
+if __name__ == '__main__':
+    main()
 
 
 
