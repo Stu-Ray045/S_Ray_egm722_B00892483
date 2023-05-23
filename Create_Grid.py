@@ -68,6 +68,8 @@ def create_aoi_grid(aoi_bounds: list, grid_resolution: int) -> gpd.GeoDataFrame:
 
         y -= grid_resolution # subtract resolution to y after each polygon is created
 
+    return gpd.GeoDataFrame(geometry=geom_array, crs=3857).to_crs(4326) # return a wgs 84 projected geodataframe
+
 # import shapefile mask for clipping
 
 def get_input_state_geometry(state_gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
