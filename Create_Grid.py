@@ -3,7 +3,7 @@ import os
 import geopandas as gpd
 import shapely
 
-def get_input_aoi_bounds() -> str: #prompt user to define area of interest
+def get_input_aoi_bounds() -> str: # prompt user to define area of interest
     while True:
         print('Enter WGS 84 WKT string or valid GIS file path: ')
         aoi = input()
