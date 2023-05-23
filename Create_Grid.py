@@ -73,7 +73,9 @@ def get_input_state_geometry(state_gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
 
         input_states = [state.upper() for state in input().split(',')]
 
-        state_list = [
+        state_list = list(state_gdf.STATE_CODE.unique())
+
+        input_errors = [
             state
             for state in input_states
             if state not in state_list # list user inputs not in state abbreviation list
@@ -116,10 +118,10 @@ def main():
     # save product to geopackage
     state_grid_gdf.to_file('grid,gpkg')
 
-# executes code only if run driectly by interpreter
+# executes code only if run directly by interpreter
 # prevents automatic execution of code if imported
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+main()
 
 
 
